@@ -6,6 +6,8 @@ import { auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 const Navbar = ({ isAuth, setIsAuth }) => {
   let navigate = useNavigate();
+  let isAuthenticated = localStorage.getItem("isAuth");
+
   const logOut = () => {
     signOut(auth).then((result) => {
       localStorage.clear();
@@ -18,15 +20,18 @@ const Navbar = ({ isAuth, setIsAuth }) => {
       <Link className={classes["nav-link"]} to="/">
         Home
       </Link>
-      <Link className={classes["nav-link"]} to="/create-post">
-        Create post
-      </Link>
-      {!isAuth ? (
+
+      {!isAuthenticated ? (
         <Link className={classes["nav-link"]} to="/login">
           Login
         </Link>
       ) : (
-        <button onClick={logOut}>Log Out</button>
+        <>
+          <Link className={classes["nav-link"]} to="/create-post">
+            Create post
+          </Link>
+          <button onClick={logOut}>Log Out</button>
+        </>
       )}
     </nav>
   );
