@@ -8,7 +8,7 @@
 }
 :root {
   --primary-color: #66101f;
-  --secondary-colo: #f6f7eb;
+  --secondary-color: #f6f7eb;
 }
 
 /* font-family: 'Lato', sans-serif;
@@ -18,7 +18,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Lato", sans-serif;
-  background-color: var(--secondary-colo);
+  background-color: var(--secondary-color);
 }
 h1,
 h2,
