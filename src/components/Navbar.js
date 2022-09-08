@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
+import Button from "./UI/Button";
 const Navbar = ({ isAuth, setIsAuth }) => {
   let navigate = useNavigate();
   let isAuthenticated = localStorage.getItem("isAuth");
 
   const logOut = () => {
     signOut(auth).then((result) => {
+      console.log("User log out");
       localStorage.clear();
       setIsAuth(false);
       navigate("/login");
@@ -30,9 +32,9 @@ const Navbar = ({ isAuth, setIsAuth }) => {
           <Link className={classes["nav-link"]} to="/create-post">
             Create post
           </Link>
-          <button className={classes["btn-connect"]} onClick={logOut}>
-            Sign Out
-          </button>
+
+          <Button text={"Log out"} clickHandler={logOut} />
+
         </>
       )}
     </nav>

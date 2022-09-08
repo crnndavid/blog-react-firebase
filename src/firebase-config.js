@@ -8,11 +8,11 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: "blog-react-firebase-42885.firebaseapp.com",
-  projectId: "blog-react-firebase-42885",
-  storageBucket: "blog-react-firebase-42885.appspot.com",
-  messagingSenderId: "160467581524",
-  appId: "1:160467581524:web:072d83e6ac0d8c202e8bc1",
+  authDomain: `${process.env.REACT_APP_PROJECT_ID}.firebaseapp.com`,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_PROJECT_ID + ".appspot.com",
+  messagingSenderId: "721582217211",
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 // Initialize Firebase
@@ -21,3 +21,5 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
+
+console.log(firebaseConfig.authDomain);

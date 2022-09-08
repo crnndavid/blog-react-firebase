@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
-import { auth, db } from "../firebase-config";
+import { db } from "../firebase-config";
+import Posts from "../components/Posts";
 const Home = ({ isAuth }) => {
   const [postLists, setPostLists] = useState([]);
   const postsCollectionRef = collection(db, "posts");
-  const deletePost = async (id) => {
-    const postDoc = doc(db, "posts", id);
-    await deleteDoc(postDoc);
-  };
-  useEffect(() => {
-    console.log("Effect called");
-    const getPosts = async () => {
+
+  const getPosts = async () => {
+    try {
       const data = await getDocs(postsCollectionRef);
       setPostLists(
         data.docs.map((post) => ({
@@ -18,25 +15,29 @@ const Home = ({ isAuth }) => {
           id: post.id,
         }))
       );
-    };
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deletePost = async (id) => {
+    const postDoc = doc(db, "posts", id);
+    await deleteDoc(postDoc);
+    getPosts();
+  };
+
+  useEffect(() => {
+    console.log("Effect called");
     getPosts();
   }, []);
 
   return (
-    <div>
-      <h1>Posts</h1>
-      <div>
-        {postLists.map((post) => (
-          <div>
-            <p>{post.title}</p>{" "}
-            {isAuth && post.author.id === auth.currentUser.uid && (
-              <span onClick={deletePost(post.id)}>Delete</span>
-            )}
-            <p>{post.text}</p>
-            <p>{post.author.name}</p>
-          </div>
-        ))}
-      </div>
+    <div className="home-container">
+      <Posts
+        postLists={postLists}
+        isAuth={isAuth}
+        deletePost={deletePost}
+      ></Posts>
     </div>
   );
 };
