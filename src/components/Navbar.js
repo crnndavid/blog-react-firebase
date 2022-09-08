@@ -32,9 +32,11 @@ const Navbar = ({ isAuth, setIsAuth }) => {
           <Link className={classes["nav-link"]} to="/create-post">
             Create post
           </Link>
+          <Link className={classes["nav-link"]} to="/favorites">
+            Favorites
+          </Link>
 
           <Button text={"Log out"} clickHandler={logOut} />
-
         </>
       )}
     </nav>

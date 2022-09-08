@@ -14,6 +14,7 @@ const CreatePost = () => {
     await addDoc(postsCollectionRef, {
       title: title,
       text: text,
+      favorites: false,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
     navigate("/");

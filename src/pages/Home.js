@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../firebase-config";
 import Posts from "../components/Posts";
 const Home = ({ isAuth }) => {
@@ -26,6 +32,18 @@ const Home = ({ isAuth }) => {
     getPosts();
   };
 
+  const addToFavorites = (id) => {
+    const docRef = doc(db, "posts", id);
+    const data = { favorites: true };
+    updateDoc(docRef, data)
+      .then((docRef) => {
+        console.log(docRef);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     console.log("Effect called");
     getPosts();
@@ -34,9 +52,10 @@ const Home = ({ isAuth }) => {
   return (
     <div className="home-container">
       <Posts
-        postLists={postLists}
+        data={postLists}
         isAuth={isAuth}
         deletePost={deletePost}
+        addToFavorites={addToFavorites}
       ></Posts>
     </div>
   );
