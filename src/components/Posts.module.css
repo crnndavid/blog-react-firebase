@@ -1,0 +1,33 @@
+.posts-container {
+  padding: 30px;
+}
+
+.posts-container h1 {
+  text-align: center;
+  margin-bottom: 100px;
+  color: var(--primary-color);
+  text-transform: uppercase;
+}
+
+.post-container {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+}
+
+.post-container h3 {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.post-container button {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.author {
+  font-size: 18px;
+  margin-top: 15px;
+}
