@@ -24,7 +24,7 @@ const Navbar = ({ isAuth, setIsAuth }) => {
       </Link>
 
       {!isAuthenticated ? (
-        <Link className={classes["nav-link"]} to="/login">
+        <Link className={classes["btn-connect"]} to="/login">
           Login
         </Link>
       ) : (
@@ -32,7 +32,9 @@ const Navbar = ({ isAuth, setIsAuth }) => {
           <Link className={classes["nav-link"]} to="/create-post">
             Create post
           </Link>
+
           <Button text={"Log out"} clickHandler={logOut} />
+
         </>
       )}
     </nav>
