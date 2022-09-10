@@ -3,24 +3,24 @@
   margin-top: 80px;
 }
 
-.posts-container h1 {
-  text-align: center;
-  margin-bottom: 100px;
-  color: var(--primary-color);
-  text-transform: uppercase;
-}
-
 .post-container {
   background-color: var(--primary-color);
   color: var(--secondary-color);
   padding: 20px;
-  margin-bottom: 20px;
+
   border-radius: 12px;
+  box-shadow: 0 0 10px gray;
+  min-height: 100%;
 }
 
 .post-container h3 {
-  font-size: 25px;
+  font-size: 30px;
   margin-bottom: 10px;
+  text-align: center;
+}
+
+.post-container p {
+  font-size: 14px;
 }
 
 .post-container button {
@@ -31,4 +31,5 @@
 .author {
   font-size: 18px;
   margin-top: 15px;
+  font-weight: bold;
 }

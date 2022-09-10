@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase-config";
 import Posts from "../components/Posts";
+
 const Home = ({ isAuth }) => {
   const [postLists, setPostLists] = useState([]);
   const postsCollectionRef = collection(db, "posts");
@@ -32,20 +33,21 @@ const Home = ({ isAuth }) => {
     getPosts();
   };
 
-  const addToFavorites = (id) => {
+  const favoritesHandler = (id, action) => {
     const docRef = doc(db, "posts", id);
-    const data = { favorites: true };
+    const data = action === "add" ? { favorites: true } : { favorites: false };
+
     updateDoc(docRef, data)
       .then((docRef) => {
-        console.log(docRef);
+        console.log("Value has been updated");
       })
       .catch((error) => {
         console.log(error);
       });
+    getPosts();
   };
 
   useEffect(() => {
-    console.log("Effect called");
     getPosts();
   }, []);
 
@@ -55,7 +57,7 @@ const Home = ({ isAuth }) => {
         data={postLists}
         isAuth={isAuth}
         deletePost={deletePost}
-        addToFavorites={addToFavorites}
+        favoritesHandler={favoritesHandler}
       ></Posts>
     </div>
   );

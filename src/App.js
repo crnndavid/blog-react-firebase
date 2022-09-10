@@ -6,8 +6,11 @@ import Favorites from "./pages/Favorites";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+
   return (
     <Router>
       <Navbar isAuth={isAuth} setIsAuth={setIsAuth} />
