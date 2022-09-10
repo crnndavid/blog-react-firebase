@@ -7,6 +7,7 @@ nav {
   align-items: center;
   position: fixed;
   top: 0px;
+  box-shadow: 0 0 10px gray;
 }
 
 .nav-link {
